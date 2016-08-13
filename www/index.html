@@ -11,6 +11,10 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
 
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/angular-moment/angular-moment.js"></script>
+    <script src=""></script>
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
@@ -27,7 +31,11 @@
               <img ng-src="{{story.thumbnail}}" 
                    ng-if="story.thumbnail.indexOf('http') === 0">
               <h2 class="story-title">{{story.title}}</h2>
-              <p>{{story.domain}}</p>
+              <p>
+                  <span am-time-ago='story.created_utc|amFromUnix'>
+                  </span>
+                  -{{story.domain}}
+              </p>
            </a>   
       </div>
       </ion-content>
