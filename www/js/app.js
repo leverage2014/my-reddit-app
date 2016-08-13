@@ -3,14 +3,17 @@
 (function() {
   var app = angular.module('myreddit', ['ionic']);
 
-  app.controller('RedditCtrl', ['$scope', function($scope) {
-    $scope.stories = [{
-      title: 'First Story'
-    }, {
-      title: 'Second Story'
-    }, {
-      title: 'Third Story'
-    }];
+  app.controller('RedditCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.stories = [];
+
+    $http.get('https://www.reddit.com/r/Android/new/.json')
+      .success(function(response) {
+        // console.log('response', response);
+        angular.forEach(response.data.children, function(child) {
+          // console.log(child.data);
+          $scope.stories.push(child.data);
+        });
+      });
   }]);
 
   app.run(function($ionicPlatform) {

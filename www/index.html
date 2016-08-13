@@ -21,7 +21,7 @@
       </ion-header-bar>
       <ion-content>
           <div ng-repeat='story in stories'>
-            {{story.title}}
+            <a href="{{story.url}}" target="_blank">{{story.title}}</a> -- {{story.domain}}
           </div>
       </ion-content>
     </ion-pane>
